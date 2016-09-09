@@ -35,7 +35,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.TIME_OUT = new System.Windows.Forms.TextBox();
+            this.WRITE_TIME_OUT = new System.Windows.Forms.TextBox();
             this.STOP_BITS = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -78,6 +78,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.S1 = new System.Windows.Forms.TextBox();
             this.S2 = new System.Windows.Forms.TextBox();
@@ -89,7 +90,8 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button8 = new System.Windows.Forms.Button();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.READ_TIME_OUT = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -133,8 +135,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.READ_TIME_OUT);
+            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.TIME_OUT);
+            this.groupBox1.Controls.Add(this.WRITE_TIME_OUT);
             this.groupBox1.Controls.Add(this.STOP_BITS);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
@@ -157,18 +161,18 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(6, 127);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(50, 13);
+            this.label13.Size = new System.Drawing.Size(75, 13);
             this.label13.TabIndex = 39;
-            this.label13.Text = "Time Out";
+            this.label13.Text = "Write TimeOut";
             // 
-            // TIME_OUT
+            // WRITE_TIME_OUT
             // 
-            this.TIME_OUT.Location = new System.Drawing.Point(122, 124);
-            this.TIME_OUT.Name = "TIME_OUT";
-            this.TIME_OUT.Size = new System.Drawing.Size(59, 20);
-            this.TIME_OUT.TabIndex = 38;
-            this.TIME_OUT.Text = "500";
-            this.TIME_OUT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.WRITE_TIME_OUT.Location = new System.Drawing.Point(122, 124);
+            this.WRITE_TIME_OUT.Name = "WRITE_TIME_OUT";
+            this.WRITE_TIME_OUT.Size = new System.Drawing.Size(59, 20);
+            this.WRITE_TIME_OUT.TabIndex = 38;
+            this.WRITE_TIME_OUT.Text = "500";
+            this.WRITE_TIME_OUT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // STOP_BITS
             // 
@@ -626,6 +630,12 @@
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(122, 19);
             this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
             // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(36, 19);
+            this.toolStripStatusLabel3.Text = "None";
+            // 
             // timer2
             // 
             this.timer2.Enabled = true;
@@ -719,11 +729,23 @@
             this.button8.Text = "Committed \r\nneurons";
             this.button8.UseVisualStyleBackColor = true;
             // 
-            // toolStripStatusLabel3
+            // label14
             // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(36, 19);
-            this.toolStripStatusLabel3.Text = "None";
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 148);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(76, 13);
+            this.label14.TabIndex = 40;
+            this.label14.Text = "Read TimeOut";
+            // 
+            // READ_TIME_OUT
+            // 
+            this.READ_TIME_OUT.Location = new System.Drawing.Point(122, 148);
+            this.READ_TIME_OUT.Name = "READ_TIME_OUT";
+            this.READ_TIME_OUT.Size = new System.Drawing.Size(59, 20);
+            this.READ_TIME_OUT.TabIndex = 41;
+            this.READ_TIME_OUT.Text = "500";
+            this.READ_TIME_OUT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
             // 
@@ -826,8 +848,10 @@
         private System.Windows.Forms.Button button8;
         public System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox TIME_OUT;
+        private System.Windows.Forms.TextBox WRITE_TIME_OUT;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.TextBox READ_TIME_OUT;
+        private System.Windows.Forms.Label label14;
     }
 }
 

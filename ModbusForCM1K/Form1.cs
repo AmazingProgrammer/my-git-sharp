@@ -434,7 +434,8 @@ namespace ModbusForInventor
             {
                 Buffer[x] = 0;
             }
-            serialPort1.ReadTimeout = Convert.ToInt32(TIME_OUT.Text);
+            serialPort1.WriteTimeout = Convert.ToInt32(WRITE_TIME_OUT.Text);
+            serialPort1.ReadTimeout = Convert.ToInt32(READ_TIME_OUT.Text);
             Wait(10);
             // Проверяем, есть ли пакет
             try
