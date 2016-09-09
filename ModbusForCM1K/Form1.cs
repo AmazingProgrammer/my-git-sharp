@@ -397,9 +397,12 @@ namespace ModbusForInventor
             // Готовим пакет с текущим временем
             Buffer[0] = Modbus.NODE_ADDRESS;
             Buffer[1] = Modbus.WRITE_REGISTERS;
+            // Адрес первого регистра
             Buffer[2] = Modbus.CLOCK_REGISTER_MASK;
             Buffer[3] = 0x00;
+            // Количество регистров для записи
             Buffer[4] = 0x06;
+            // Регистр секунд
             Buffer[5] = 0x00;
             Buffer[6] = (byte)DateTime.Now.Second;
             Buffer[7] = 0x00;
@@ -412,6 +415,7 @@ namespace ModbusForInventor
             Buffer[14] = (byte)DateTime.Now.Month;
             Buffer[15] = 0x00;
             Buffer[16] = (byte)(DateTime.Now.Year - ((DateTime.Now.Year / 1000) * 1000));
+            // Вычисляем контрольную сумму
             uint crc = Modbus.CRC16(Buffer, (uint)Buffer.Length);
             Buffer[17] = (byte)(crc);
             Buffer[18] = (byte)(crc >> 8);
