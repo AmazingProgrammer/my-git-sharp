@@ -34,6 +34,8 @@
             this.BAUD_RATE = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.READ_TIME_OUT = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.WRITE_TIME_OUT = new System.Windows.Forms.TextBox();
             this.STOP_BITS = new System.Windows.Forms.ComboBox();
@@ -90,8 +92,6 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button8 = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.READ_TIME_OUT = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -156,6 +156,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Настройка COM-порта";
             // 
+            // READ_TIME_OUT
+            // 
+            this.READ_TIME_OUT.Location = new System.Drawing.Point(122, 148);
+            this.READ_TIME_OUT.Name = "READ_TIME_OUT";
+            this.READ_TIME_OUT.Size = new System.Drawing.Size(48, 20);
+            this.READ_TIME_OUT.TabIndex = 41;
+            this.READ_TIME_OUT.Text = "500";
+            this.READ_TIME_OUT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 148);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(76, 13);
+            this.label14.TabIndex = 40;
+            this.label14.Text = "Read TimeOut";
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -169,7 +187,7 @@
             // 
             this.WRITE_TIME_OUT.Location = new System.Drawing.Point(122, 124);
             this.WRITE_TIME_OUT.Name = "WRITE_TIME_OUT";
-            this.WRITE_TIME_OUT.Size = new System.Drawing.Size(59, 20);
+            this.WRITE_TIME_OUT.Size = new System.Drawing.Size(48, 20);
             this.WRITE_TIME_OUT.TabIndex = 38;
             this.WRITE_TIME_OUT.Text = "500";
             this.WRITE_TIME_OUT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -728,24 +746,6 @@
             this.button8.TabIndex = 37;
             this.button8.Text = "Committed \r\nneurons";
             this.button8.UseVisualStyleBackColor = true;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 148);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(76, 13);
-            this.label14.TabIndex = 40;
-            this.label14.Text = "Read TimeOut";
-            // 
-            // READ_TIME_OUT
-            // 
-            this.READ_TIME_OUT.Location = new System.Drawing.Point(122, 148);
-            this.READ_TIME_OUT.Name = "READ_TIME_OUT";
-            this.READ_TIME_OUT.Size = new System.Drawing.Size(59, 20);
-            this.READ_TIME_OUT.TabIndex = 41;
-            this.READ_TIME_OUT.Text = "500";
-            this.READ_TIME_OUT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
             // 

@@ -45,6 +45,7 @@ namespace ModbusForInventor
           Application.DoEvents();
         }
     }
+
         public Form1()
         {
             InitializeComponent();
@@ -419,6 +420,9 @@ namespace ModbusForInventor
             uint crc = Modbus.CRC16(Buffer, (uint)Buffer.Length);
             Buffer[17] = (byte)(crc);
             Buffer[18] = (byte)(crc >> 8);
+            //
+            serialPort1.WriteTimeout = Convert.ToInt32(WRITE_TIME_OUT.Text);
+            serialPort1.ReadTimeout = Convert.ToInt32(READ_TIME_OUT.Text);
             // Пытаемся отправить пакет    
             try
             {
@@ -430,25 +434,25 @@ namespace ModbusForInventor
                 MessageBox.Show("Error writing to serial port - " + ex.Message, "Error!");
                 return;
             }
+            toolStripStatusLabel3.Text = "Process";
             for (byte x = 0; x < Buffer.Length; x++)
             {
                 Buffer[x] = 0;
             }
-            serialPort1.WriteTimeout = Convert.ToInt32(WRITE_TIME_OUT.Text);
-            serialPort1.ReadTimeout = Convert.ToInt32(READ_TIME_OUT.Text);
-            Wait(10);
+     
+            Wait(1);
             // Проверяем, есть ли пакет
             try
             {
                 int sss = serialPort1.Read(Buffer, 0, Buffer.Length);
-                if (Buffer[0] == 0)
+                if (Buffer[0] != Modbus.NODE_ADDRESS)
                     toolStripStatusLabel3.Text = "Time no updated!";
                 else
                     toolStripStatusLabel3.Text = "Time updated!";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error writing to serial port - " + ex.Message, "Error!");
+                MessageBox.Show("Error reading from serial port - " + ex.Message, "Error!");
                 return;
             }
             
