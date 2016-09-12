@@ -474,6 +474,40 @@ namespace ModbusForInventor
             CLEAR_BTN.BackColor = Color.FromName("AppWorkspace");
         }
 
+        private void CM_REG_WRITE_BTN_Click(object sender, EventArgs e)
+        {
+            byte[] Buffer = new byte[19];
+            byte y = 0;
+            y = (byte)Convert.ToInt32(CM_REG_ADDRESS_BOX.Text, 16);
+            try
+            {
+                serialPort1.Write(Buffer, 0, Buffer.Length);
+            }
+            catch (Exception ex)
+            {
+                serialPort1.Close();
+                MessageBox.Show("Error writing to serial port - " + ex.Message, "Error!");
+                return;
+            }
+        }
+
+        private void CM_REG_READ_BTN_Click(object sender, EventArgs e)
+        {
+            byte[] Buffer = new byte[19];
+            byte y = 0;
+            y = (byte)Convert.ToInt32(CM_REG_ADDRESS_BOX.Text, 16);
+            try
+            {
+                serialPort1.Write(Buffer, 0, Buffer.Length);
+            }
+            catch (Exception ex)
+            {
+                serialPort1.Close();
+                MessageBox.Show("Error writing to serial port - " + ex.Message, "Error!");
+                return;
+            }
+        }
+
         public void ChangeText(string text)
         {
             this.textBox5.Text = text;
