@@ -406,21 +406,26 @@ namespace ModbusForInventor
             // Регистр секунд
             Buffer[5] = 0x00;
             Buffer[6] = (byte)DateTime.Now.Second;
+            // Регистр минут
             Buffer[7] = 0x00;
             Buffer[8] = (byte)DateTime.Now.Minute;
+            // Регистр часов
             Buffer[9] = 0x00;
             Buffer[10] = (byte)DateTime.Now.Hour;
+            // Регистр дата
             Buffer[11] = 0x00;
             Buffer[12] = (byte)DateTime.Now.Day;
+            // Регистр месяц
             Buffer[13] = 0x00;
             Buffer[14] = (byte)DateTime.Now.Month;
+            // Регистр год
             Buffer[15] = 0x00;
             Buffer[16] = (byte)(DateTime.Now.Year - ((DateTime.Now.Year / 1000) * 1000));
             // Вычисляем контрольную сумму
             uint crc = Modbus.CRC16(Buffer, (uint)Buffer.Length);
             Buffer[17] = (byte)(crc);
             Buffer[18] = (byte)(crc >> 8);
-            //
+            // Настройка timeouts
             serialPort1.WriteTimeout = Convert.ToInt32(WRITE_TIME_OUT.Text);
             serialPort1.ReadTimeout = Convert.ToInt32(READ_TIME_OUT.Text);
             // Пытаемся отправить пакет    
@@ -435,11 +440,12 @@ namespace ModbusForInventor
                 return;
             }
             toolStripStatusLabel3.Text = "Process";
+            // Очищаем приемный буфер
             for (byte x = 0; x < Buffer.Length; x++)
             {
                 Buffer[x] = 0;
             }
-     
+            // Ждем секунду
             Wait(1);
             // Проверяем, есть ли пакет
             try
