@@ -98,6 +98,14 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.CM_REG_ADDRESS_BOX = new System.Windows.Forms.ComboBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.PARAMS_WRITE_BTN = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -755,7 +763,7 @@
             // 
             // CM_REG_WRITE_BTN
             // 
-            this.CM_REG_WRITE_BTN.Location = new System.Drawing.Point(732, 274);
+            this.CM_REG_WRITE_BTN.Location = new System.Drawing.Point(720, 283);
             this.CM_REG_WRITE_BTN.Name = "CM_REG_WRITE_BTN";
             this.CM_REG_WRITE_BTN.Size = new System.Drawing.Size(94, 23);
             this.CM_REG_WRITE_BTN.TabIndex = 38;
@@ -765,7 +773,7 @@
             // 
             // CM_REG_READ_BTN
             // 
-            this.CM_REG_READ_BTN.Location = new System.Drawing.Point(732, 309);
+            this.CM_REG_READ_BTN.Location = new System.Drawing.Point(820, 283);
             this.CM_REG_READ_BTN.Name = "CM_REG_READ_BTN";
             this.CM_REG_READ_BTN.Size = new System.Drawing.Size(94, 23);
             this.CM_REG_READ_BTN.TabIndex = 39;
@@ -775,7 +783,7 @@
             // 
             // CM_REG_DATA_BOX
             // 
-            this.CM_REG_DATA_BOX.Location = new System.Drawing.Point(651, 312);
+            this.CM_REG_DATA_BOX.Location = new System.Drawing.Point(657, 286);
             this.CM_REG_DATA_BOX.Name = "CM_REG_DATA_BOX";
             this.CM_REG_DATA_BOX.Size = new System.Drawing.Size(57, 20);
             this.CM_REG_DATA_BOX.TabIndex = 42;
@@ -783,17 +791,17 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(636, 260);
+            this.label15.Location = new System.Drawing.Point(594, 257);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(90, 13);
+            this.label15.Size = new System.Drawing.Size(53, 26);
             this.label15.TabIndex = 43;
-            this.label15.Text = "Номер регистра";
+            this.label15.Text = "Номер \r\nрегистра";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(660, 296);
+            this.label16.Location = new System.Drawing.Point(666, 261);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(48, 13);
             this.label16.TabIndex = 44;
@@ -820,11 +828,81 @@
             "D",
             "E",
             "F"});
-            this.CM_REG_ADDRESS_BOX.Location = new System.Drawing.Point(651, 276);
+            this.CM_REG_ADDRESS_BOX.Location = new System.Drawing.Point(591, 286);
             this.CM_REG_ADDRESS_BOX.Name = "CM_REG_ADDRESS_BOX";
             this.CM_REG_ADDRESS_BOX.Size = new System.Drawing.Size(57, 21);
             this.CM_REG_ADDRESS_BOX.TabIndex = 45;
             this.CM_REG_ADDRESS_BOX.Text = "0";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(591, 338);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(56, 20);
+            this.textBox6.TabIndex = 46;
+            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // PARAMS_WRITE_BTN
+            // 
+            this.PARAMS_WRITE_BTN.Location = new System.Drawing.Point(820, 338);
+            this.PARAMS_WRITE_BTN.Name = "PARAMS_WRITE_BTN";
+            this.PARAMS_WRITE_BTN.Size = new System.Drawing.Size(94, 23);
+            this.PARAMS_WRITE_BTN.TabIndex = 47;
+            this.PARAMS_WRITE_BTN.Text = "Записать ";
+            this.PARAMS_WRITE_BTN.UseVisualStyleBackColor = true;
+            this.PARAMS_WRITE_BTN.Click += new System.EventHandler(this.PARAMS_WRITE_BTN_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(576, 310);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(72, 26);
+            this.label17.TabIndex = 48;
+            this.label17.Text = "Номер \r\nконтроллера";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(666, 317);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(118, 13);
+            this.label18.TabIndex = 50;
+            this.label18.Text = "IP адрес контроллера";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(660, 338);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(34, 20);
+            this.textBox7.TabIndex = 49;
+            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(700, 338);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(34, 20);
+            this.textBox8.TabIndex = 51;
+            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(740, 338);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(34, 20);
+            this.textBox9.TabIndex = 52;
+            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(780, 338);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(34, 20);
+            this.textBox10.TabIndex = 53;
+            this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Form1
             // 
@@ -832,6 +910,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(926, 388);
+            this.Controls.Add(this.textBox10);
+            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.PARAMS_WRITE_BTN);
+            this.Controls.Add(this.textBox6);
             this.Controls.Add(this.CM_REG_ADDRESS_BOX);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
@@ -943,6 +1029,14 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox CM_REG_ADDRESS_BOX;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button PARAMS_WRITE_BTN;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox10;
     }
 }
 

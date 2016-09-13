@@ -595,5 +595,10 @@ namespace ModbusForInventor
         {
             this.textBox5.Text = text;
         }
+
+        private void PARAMS_WRITE_BTN_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
