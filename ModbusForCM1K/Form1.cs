@@ -392,6 +392,7 @@ namespace ModbusForInventor
             textBox1.Text = "";
         }
 
+        // Обработка нажатия кнопки Синхронизировать время
         private void DATA_TIME_BTN_Click(object sender, EventArgs e)
         {
             byte[] Buffer = new byte[19];
@@ -422,7 +423,7 @@ namespace ModbusForInventor
             Buffer[15] = 0x00;
             Buffer[16] = (byte)(DateTime.Now.Year - ((DateTime.Now.Year / 1000) * 1000));
             // Вычисляем контрольную сумму
-            uint crc = Modbus.CRC16(Buffer, (uint)Buffer.Length);
+            uint crc = Modbus.CRC16(Buffer, (uint)Buffer.Length-2);
             Buffer[17] = (byte)(crc);
             Buffer[18] = (byte)(crc >> 8);
             // Настройка timeouts
@@ -473,12 +474,29 @@ namespace ModbusForInventor
             Wait(3.0);
             CLEAR_BTN.BackColor = Color.FromName("AppWorkspace");
         }
-
+        // Обработка нажатия кнопки Записать 
         private void CM_REG_WRITE_BTN_Click(object sender, EventArgs e)
         {
-            byte[] Buffer = new byte[19];
-            byte y = 0;
-            y = (byte)Convert.ToInt32(CM_REG_ADDRESS_BOX.Text, 16);
+            byte[] Buffer = new byte[9];
+            byte reg_address = 0;
+            uint reg_data = 0;
+            reg_address = (byte)Convert.ToInt32(CM_REG_ADDRESS_BOX.Text, 16);
+            reg_data = (uint)Convert.ToInt32(CM_REG_DATA_BOX.Text, 16);
+            Buffer[0] = Modbus.NODE_ADDRESS;
+            Buffer[1] = Modbus.WRITE_REGISTER;
+            // Адрес первого регистра
+            Buffer[2] = Modbus.CM1K_REGISTER_MASK;
+            Buffer[3] = reg_address;
+            // Количество регистров для записи
+            Buffer[4] = 0x01;
+            // Данные для записи
+            Buffer[5] = (byte) (reg_data >> 8);
+            Buffer[6] = (byte) reg_data;
+            // Вычисляем контрольную сумму
+            uint crc = Modbus.CRC16(Buffer, (uint)Buffer.Length - 2);
+            Buffer[7] = (byte)(crc);
+            Buffer[8] = (byte)(crc >> 8);
+            // Пытаемся отправить пакет  
             try
             {
                 serialPort1.Write(Buffer, 0, Buffer.Length);
@@ -489,13 +507,47 @@ namespace ModbusForInventor
                 MessageBox.Show("Error writing to serial port - " + ex.Message, "Error!");
                 return;
             }
+            // Ждем секунду
+            Wait(1);
+            // Проверяем, есть ли пакет
+            try
+            {
+                int sss = serialPort1.Read(Buffer, 0, Buffer.Length);
+                if ((sss == 0)&&(Buffer[0] != Modbus.NODE_ADDRESS))
+                    toolStripStatusLabel3.Text = "Data not write!";
+                else
+                    toolStripStatusLabel3.Text = "Data write!";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error reading from serial port - " + ex.Message, "Error!");
+                return;
+            }
         }
 
+        // Обработка нажатия кнопки Прочитать
         private void CM_REG_READ_BTN_Click(object sender, EventArgs e)
         {
-            byte[] Buffer = new byte[19];
-            byte y = 0;
-            y = (byte)Convert.ToInt32(CM_REG_ADDRESS_BOX.Text, 16);
+            byte[] Buffer = new byte[9];
+            byte reg_address = 0;
+            uint reg_data = 0;
+            reg_address = (byte)Convert.ToInt32(CM_REG_ADDRESS_BOX.Text, 16);
+            //reg_data = (byte)Convert.ToInt32(CM_REG_DATA_BOX.Text, 16);
+            Buffer[0] = Modbus.NODE_ADDRESS;
+            Buffer[1] = Modbus.READ_REGISTER;
+            // Адрес первого регистра
+            Buffer[2] = Modbus.CM1K_REGISTER_MASK;
+            Buffer[3] = reg_address;
+            // Количество регистров для чтения
+            Buffer[4] = 0x01;
+            // Данные для записи
+            Buffer[5] = 0;
+            Buffer[6] = 0;
+            // Вычисляем контрольную сумму
+            uint crc = Modbus.CRC16(Buffer, (uint)Buffer.Length - 2);
+            Buffer[7] = (byte)(crc);
+            Buffer[8] = (byte)(crc >> 8);
+            // Пытаемся отправить пакет  
             try
             {
                 serialPort1.Write(Buffer, 0, Buffer.Length);
@@ -504,6 +556,37 @@ namespace ModbusForInventor
             {
                 serialPort1.Close();
                 MessageBox.Show("Error writing to serial port - " + ex.Message, "Error!");
+                return;
+            }
+            // Ждем секунду
+            Wait(1);
+            // Проверяем, есть ли пакет
+            try
+            {
+                int sss = serialPort1.Read(Buffer, 0, Buffer.Length);
+                if (sss == 0)
+                {
+                    if (Buffer[0] != Modbus.NODE_ADDRESS)
+                    {
+                        toolStripStatusLabel3.Text = "Data not read!";
+                        CM_REG_DATA_BOX.Text = "??";
+                    }
+                    else
+                    {
+                        toolStripStatusLabel3.Text = "Data read!";
+                        reg_data = Buffer[6] | (uint)(Buffer[5] << 8);
+                        CM_REG_DATA_BOX.Text = Convert.ToString(reg_data);
+                    }
+                }
+                else
+                {
+                    toolStripStatusLabel3.Text = "Data not read!";
+                    CM_REG_DATA_BOX.Text = "??";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error reading from serial port - " + ex.Message, "Error!");
                 return;
             }
         }
