@@ -400,7 +400,7 @@ namespace ModbusForInventor
             Buffer[0] = Modbus.NODE_ADDRESS;
             Buffer[1] = Modbus.WRITE_REGISTERS;
             // Адрес первого регистра
-            Buffer[2] = Modbus.CLOCK_REGISTER_MASK;
+            Buffer[2] = Modbus.GRUP_CLOCK_REGISTER;
             Buffer[3] = 0x00;
             // Количество регистров для записи
             Buffer[4] = 0x06;
@@ -485,7 +485,7 @@ namespace ModbusForInventor
             Buffer[0] = Modbus.NODE_ADDRESS;
             Buffer[1] = Modbus.WRITE_REGISTER;
             // Адрес первого регистра
-            Buffer[2] = Modbus.CM1K_REGISTER_MASK;
+            Buffer[2] = Modbus.GRUP_CM1K_REGISTER;
             Buffer[3] = reg_address;
             // Количество регистров для записи
             Buffer[4] = 0x01;
@@ -536,7 +536,7 @@ namespace ModbusForInventor
             Buffer[0] = Modbus.NODE_ADDRESS;
             Buffer[1] = Modbus.READ_REGISTER;
             // Адрес первого регистра
-            Buffer[2] = Modbus.CM1K_REGISTER_MASK;
+            Buffer[2] = Modbus.GRUP_CM1K_REGISTER;
             Buffer[3] = reg_address;
             // Количество регистров для чтения
             Buffer[4] = 0x01;
@@ -598,7 +598,11 @@ namespace ModbusForInventor
 
         private void PARAMS_WRITE_BTN_Click(object sender, EventArgs e)
         {
-
+            byte[] Buffer = new byte[9];
+            Buffer[0] = Modbus.NODE_ADDRESS;
+            Buffer[1] = Modbus.WRITE_REGISTER;
+            // Адрес первого регистра
+            Buffer[2] = Modbus.GRUP_PARAM_REGISTER;
         }
     }
 }

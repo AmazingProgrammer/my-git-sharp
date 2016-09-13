@@ -11,9 +11,9 @@ public class Modbus
     public const byte WRITE_REGISTER  = 0x06;
     public const byte WRITE_REGISTERS = 0x10;
     // Старший байт номера регистра определяет группу параметров
-    public const byte CLOCK_REGISTER_MASK   = 0x01;
-    public const byte CM1K_REGISTER_MASK    = 0x00;
-    public const byte PARAM_REGISTER_MASK   = 0x02;
+    public const byte GRUP_CLOCK_REGISTER   = 0x01;
+    public const byte GRUP_CM1K_REGISTER    = 0x00;
+    public const byte GRUP_PARAM_REGISTER   = 0x02;
     // Адрес устройства
     public const byte NODE_ADDRESS = 0x01;
     // Адреса регистров
